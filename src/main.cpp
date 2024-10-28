@@ -30,16 +30,21 @@ void update_all_particals(const std::vector<std::shared_ptr<partical>> &partical
 
 void update_all_constrains(std::vector<constrain> &constrains, Vector2 mouse_position, bool isMouseClicked)
 {
-    for (auto &&c : constrains)
+    auto iter = constrains.begin();
+    while (iter != constrains.end())
     {
-        if (c.isPendingRemove)
+        bool isCollideWithMouse = CheckCollisionPointLine(mouse_position, iter->p1->position, iter->p2->position, MOUSE_RADIUS);
+        iter->color = isCollideWithMouse ? RED : WHITE;
+        satisfy(*iter);
+
+        if (isCollideWithMouse && isMouseClicked)
         {
-            continue;
+            iter = constrains.erase(iter);
         }
-        bool isCollideWithMouse = CheckCollisionPointLine(mouse_position, c.p1->position, c.p2->position, MOUSE_RADIUS);
-        c.color = isCollideWithMouse ? RED : WHITE;
-        c.isPendingRemove = isCollideWithMouse && isMouseClicked;
-        satisfy(c);
+        else
+        {
+            ++iter;
+        }
     }
 }
 
@@ -55,10 +60,7 @@ void draw_all_entity(const std::vector<std::shared_ptr<partical>> &particals, co
 
     for (auto &&c : constrains)
     {
-        if (!c.isPendingRemove)
-        {
-            draw(c);
-        }
+        draw(c);
     }
 
     EndDrawing();
