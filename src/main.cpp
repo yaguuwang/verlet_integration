@@ -15,7 +15,7 @@ constexpr int MOUSE_RADIUS = 10;
 constexpr Vector2 GRAVITY = Vector2{0.0f, 10.0f};
 
 constexpr int ROW = 20;
-constexpr int COL = 20;
+constexpr int COL = 60;
 
 void update_all_particals(const std::vector<std::shared_ptr<partical>> &particals,
                           float elasped_time, float screen_width, float screen_height)

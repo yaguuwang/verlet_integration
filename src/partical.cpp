@@ -3,8 +3,8 @@
 #include <memory>
 
 constexpr int BUFFER_TO_TOP = 20;
-constexpr int BUFFER_TO_LEFT = 200;
-constexpr int BUFFER_IN_BETWEEN = 25;
+constexpr int BUFFER_TO_LEFT = 80;
+constexpr int BUFFER_IN_BETWEEN = 8;
 
 std::vector<std::shared_ptr<partical>> prepare_particals(int row, int col)
 {

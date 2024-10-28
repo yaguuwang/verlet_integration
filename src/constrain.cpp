@@ -24,14 +24,14 @@ std::vector<constrain> prepare_constrains(const std::vector<std::shared_ptr<part
     {
         for (int c = 0; c < col; c++)
         {
-            auto p = particals[r * row + c].get();
+            auto p = particals[r * col + c].get();
             if (c != col - 1)
             {
-                constrains.emplace_back(p, particals[r * row + c + 1].get());
+                constrains.emplace_back(p, particals[r * col + c + 1].get());
             }
             if (r != row - 1)
             {
-                constrains.emplace_back(p, particals[(r + 1) * row + c].get());
+                constrains.emplace_back(p, particals[(r + 1) * col + c].get());
             }
         }
     }
